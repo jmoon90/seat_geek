@@ -20,6 +20,11 @@ module SeatGeek
 
   attr_accessor :month_of_the_year, :state, :attendee_count, :event_type, :base_url
 
+  # def event_type
+  #   @seat_geek_service = SeatGeekService.new(base_url: SEATGEEK_BASE_URL)
+  #   @seat_geek_service.run['taxonomies']
+  # end
+
   def self.build_query
     query = ""
     if month_of_the_year
