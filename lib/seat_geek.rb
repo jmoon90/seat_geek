@@ -3,6 +3,7 @@ require "seat_geek/version"
 module SeatGeek
   SEATGEEK_BASE_URL = 'http://api.seatgeek.com/2/events'
   def self.find_events(base_url: nil, month_of_the_year: nil, state: nil, attendee_count: nil, event_type: nil)
+    binding.pry
     @base_url = base_url || SEATGEEK_BASE_URL
     @month_of_the_year = month_of_the_year
     @state = state
@@ -18,8 +19,6 @@ module SeatGeek
 
   private
 
-  attr_accessor :month_of_the_year, :state, :attendee_count, :event_type, :base_url
-
   # def event_type
   #   @seat_geek_service = SeatGeekService.new(base_url: SEATGEEK_BASE_URL)
   #   @seat_geek_service.run['taxonomies']
@@ -27,7 +26,7 @@ module SeatGeek
 
   def self.build_query
     query = ""
-    if month_of_the_year
+    if false#month_of_the_year
       query = month_query(month_of_the_year)
     end
     if state
