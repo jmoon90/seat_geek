@@ -19,6 +19,11 @@ module SeatGeek
   #taxonomies -> events categories
   def get_event_types
     @base_url = seatgeek_taxonomies_url
+    @month_of_the_year = nil
+    @state = nil
+    @attendee_count = nil
+    @event_type = nil
+
     parse_response(typhoeus_request.body)
   end
 
