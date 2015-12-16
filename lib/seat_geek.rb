@@ -8,7 +8,7 @@ module SeatGeek
   PUBLIC_API_URL = 'http://api.seatgeek.com/2'
 
   def self.get_events(month_of_the_year: nil, state: nil, attendee_count: nil, event_type: nil, seat_geek_partner_id: nil)
-    @base_url = PUBLIC_API_URL + "/events?aid#{seat_geek_partner_id}"
+    @base_url = PUBLIC_API_URL + "/events?aid=#{seat_geek_partner_id}"
     @month_of_the_year = month_of_the_year
     @state = state
     @attendee_count = attendee_count
