@@ -5,9 +5,10 @@ require 'oj'
 
 module SeatGeek
   extend self
+  PUBLIC_API_URL = 'http://api.seatgeek.com/2'
 
-  def get_events(base_url: nil, month_of_the_year: nil, state: nil, attendee_count: nil, event_type: nil)
-    @base_url = base_url || seatgeek_base_url
+  def self.get_events(month_of_the_year: nil, state: nil, attendee_count: nil, event_type: nil, seat_geek_partner_id:)
+    @base_url = PUBLIC_API_URL + "/events?aid#{seat_geek_partner_id}"
     @month_of_the_year = month_of_the_year
     @state = state
     @attendee_count = attendee_count
@@ -16,9 +17,8 @@ module SeatGeek
     parse_response(typhoeus_request.body)
   end
 
-  #taxonomies -> events categories
-  def get_event_types
-    @base_url = seatgeek_taxonomies_url
+  def self.get_taxonomies
+    @base_url = PUBLIC_API_URL + '/taxonomies'
     @month_of_the_year = nil
     @state = nil
     @attendee_count = nil
@@ -27,11 +27,23 @@ module SeatGeek
     parse_response(typhoeus_request.body)
   end
 
+  #TODO incomplete
+  #GET http://api.seatgeek.com/2/recommendations
+
+  def self.get_recommendations(client_key:)
+    @base_url = PUBLIC_API_URL + '/recommendations'
+    parse_response(typhoeus_request.body)
+  end
+
   private
 
   attr_accessor :month_of_the_year, :state, :attendee_count, :event_type, :base_url
 
-  def build_url
+  # Instead of BuildQuery what if it's the Method name?
+  # E.G Recommendations.build(options)
+  # E.G Events.build(options)
+  # This way each build could have their own custom settings
+  def build_url(url)
     BuildQuery.build(options)
   end
 
@@ -44,14 +56,6 @@ module SeatGeek
 
   def parse_response(json_string)
     Oj.load(json_string)
-  end
-
-  def seatgeek_base_url
-    'http://api.seatgeek.com/2/events'
-  end
-
-  def seatgeek_taxonomies_url
-    'http://api.seatgeek.com/2/taxonomies'
   end
 
   def options

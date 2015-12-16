@@ -7,15 +7,12 @@ module SeatGeek
         query = month_query(options[:month_of_the_year])
       end
       if options[:state]
-        query = '?' unless query.match(/\?/)
         query = query + location_query(options[:state])
       end
       if options[:attendee_count]
-        query = '?' unless query.match(/\?/)
         query = query + attendee_count_query(options[:attendee_count])
       end
       if options[:event_type]
-        query = '?' unless query.match(/\?/)
         query = query + event_type_query(options[:event_type])
       end
       options[:base_url] + query
@@ -32,7 +29,7 @@ module SeatGeek
       first_day_of_month = Date.civil(year, month, 1).strftime('%F')
       last_day_of_month = Date.civil(year, month, -1).strftime('%F')
 
-      "?datetime_utc.gte=#{first_day_of_month}&datetime_utc.lte=#{last_day_of_month}"
+      "&datetime_utc.gte=#{first_day_of_month}&datetime_utc.lte=#{last_day_of_month}"
     end
 
     # Events in NY state
