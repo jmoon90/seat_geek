@@ -1,6 +1,5 @@
 module SeatGeek
   class BuildQuery
-
     def self.build(options)
       query = ""
       if options[:month_of_the_year]
@@ -29,7 +28,7 @@ module SeatGeek
       first_day_of_month = Date.civil(year, month, 1).strftime('%F')
       last_day_of_month = Date.civil(year, month, -1).strftime('%F')
 
-      "&datetime_utc.gte=#{first_day_of_month}&datetime_utc.lte=#{last_day_of_month}"
+      "?datetime_utc.gte=#{first_day_of_month}&datetime_utc.lte=#{last_day_of_month}"
     end
 
     # Events in NY state

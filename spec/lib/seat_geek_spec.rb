@@ -18,7 +18,7 @@ describe 'get_event' do
   end
 
   it 'should return january as month' do
-    expect(@result.first["datetime_utc"]).to match(/2016-01/)
+    expect(@result.first["url"]).to match(/2016-01/)
   end
 
   it 'should return nba event' do
