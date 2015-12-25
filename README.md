@@ -1,8 +1,6 @@
 # SeatGeek
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/seat_geek`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Uses the SeatGeek Platform API to data around tickets in the USA.
 
 ## Installation
 
@@ -22,7 +20,24 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+
+Taxonomies
+
+```ruby
+SeatGeek.get_taxonomies
+# => GET http://api.seatgeek.com/2/taxonomies
+```
+Events (accepts five parameters or none)
+```ruby
+SeatGeek.get_events()
+# => GET http://api.seatgeek.com/2/events
+
+SeatGeek.get_events(month_of_the_year: '2016-03',
+                    state: 'ny',
+                    attendee_count: num,
+                    event_type: 'taxonomie',
+                    seat_geek_partner_id:)
+```
 
 ## Development
 
@@ -32,8 +47,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/seat_geek. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jmoon/seat_geek. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
+please write tests with each pull request
 
 ## License
 
