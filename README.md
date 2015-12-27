@@ -21,11 +21,23 @@ Or install it yourself as:
 ## Usage
 
 
-Taxonomies
+Taxonomy
 
 ```ruby
-SeatGeek.get_taxonomies
+taxonomy = SeatGeek::Taxonomy.new()
+
+taxonomy.all
 # => GET http://api.seatgeek.com/2/taxonomies
+
+taxonomy.professional_sports
+# 7 professional sports
+# mlb
+# nba
+# nfl
+# nhl
+# mls
+# pga
+# mma
 ```
 Events (accepts five parameters or none)
 ```ruby
@@ -39,17 +51,13 @@ SeatGeek.get_events(month_of_the_year: '2016-03',
                     seat_geek_partner_id:)
 ```
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake false` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/jmoon/seat_geek. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jmoon/seat_geek.
 
 please write tests with each pull request
+
+If you're lookig for features to work on, please check out https://github.com/jmoon90/seat_geek/issues
 
 ## License
 
