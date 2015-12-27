@@ -29,8 +29,6 @@ describe SeatGeek::BuildQuery do
       expect(result).to match('api.seatgeek.com/2/events&listing_count.gt=2')
     end
 
-
-
     it 'return event_type url' do
       @options[:event_type] = 'nba'
       result = SeatGeek::BuildQuery.build(@options)

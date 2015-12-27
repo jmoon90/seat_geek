@@ -1,5 +1,6 @@
 require "seat_geek/version"
 require "seat_geek/build_query"
+require "seat_geek/taxonomy"
 require 'typhoeus'
 require 'oj'
 
