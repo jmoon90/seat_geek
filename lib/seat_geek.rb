@@ -18,21 +18,16 @@ module SeatGeek
     parse_response(typhoeus_request.body)
   end
 
-  def self.get_taxonomies
-    @base_url = PUBLIC_API_URL + '/taxonomies'
-    @month_of_the_year = nil
-    @state = nil
-    @attendee_count = nil
-    @event_type = nil
+  #TODO Need to think this through
+  # not sure how to get recommendations or what we should get recommendations
+  # for
 
-    parse_response(typhoeus_request.body)
-  end
+  #Possible have a show page for the each events
+  #Then add recommendations on the bottom for that event_id + zipcode
 
-  #TODO incomplete
   #GET http://api.seatgeek.com/2/recommendations
-
-  def self.get_recommendations(client_key:)
-    @base_url = PUBLIC_API_URL + '/recommendations'
+  def self.get_recommendations()#client_key:)
+    @base_url = PUBLIC_API_URL + '/recommendations?client_id=MzkzMjEyMnwxNDQ5MjgzMTQ1'
     parse_response(typhoeus_request.body)
   end
 

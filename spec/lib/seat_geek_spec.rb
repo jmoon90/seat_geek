@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'get_event' do
   before(:each) do
-    @result = SeatGeek.get_events(month_of_the_year: '2016-01', state: 'ny', attendee_count: '2', event_type: 'nba')['events']
+    @result ||= SeatGeek.get_events(month_of_the_year: '2016-01', state: 'ny', attendee_count: '2', event_type: 'nba')['events']
   end
 
   it 'doesnt require params and contains 10 events' do
@@ -25,11 +25,4 @@ describe 'get_event' do
     expect(@result.first['type']).to match(/nba/)
   end
 
-end
-
-describe 'get_taxonomies' do
-  it 'returns list of taxonomies' do
-    result = SeatGeek.get_taxonomies["taxonomies"][0]["name"]
-    expect(result).to match(/sports/)
-  end
 end
