@@ -26,11 +26,27 @@ module SeatGeek
     end
 
     def concerts
-      #TODO finish code
+      concerts = []
+      conert_ids = [2,6,9,15,19,33,37]
+      result = SeatGeek::Taxonomy.new.all
+
+      conert_ids.each do |x|
+        concerts << result[x]
+      end
+
+      concerts
     end
 
-    def minor_sports
-      #TODO finish code
+    def minor_league_sports
+      minor = []
+      minorSports = [2,6,9,15,19,33,37]
+      result = SeatGeek::Taxonomy.new.all
+
+      minorSports.each do |x|
+        minor << result[x]
+      end
+
+      minor
     end
 
     private

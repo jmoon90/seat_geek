@@ -38,6 +38,17 @@ taxonomy.professional_sports
 # mls
 # pga
 # mma
+
+
+taxonomy.concerts
+# 7 conerts related events
+# classical
+# theater
+# concert
+# music_festival is index
+# comedy
+# dance_performance_tour
+# broadway_tickets_national
 ```
 Events (accepts five parameters or none)
 ```ruby
