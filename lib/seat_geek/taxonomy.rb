@@ -54,7 +54,7 @@ module SeatGeek
     attr_accessor :base_url
 
     def build_url
-      BuildQuery.build(options)
+      BuildQuery.build({}, base_url)
     end
 
     def typhoeus_request
@@ -66,16 +66,6 @@ module SeatGeek
 
     def parse_response(json_string)
       Oj.load(json_string)
-    end
-
-    def options
-      {
-        base_url: base_url,
-        # month_of_the_year: month_of_the_year,
-        # state: state,
-        # attendee_count: attendee_count,
-        # event_type: event_type,
-      }
     end
   end
 end

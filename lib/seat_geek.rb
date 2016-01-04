@@ -6,14 +6,14 @@ require 'oj'
 
 module SeatGeek
   extend self
-  PUBLIC_API_URL = 'http://api.seatgeek.com/2'
+  PUBLIC_API_URL = 'http://api.seatgeek.com/2/events?'
 
-  def self.get_events(month_of_the_year: nil, state: nil, attendee_count: nil, event_type: nil, seat_geek_partner_id: nil)
-    @base_url = PUBLIC_API_URL + "/events?aid=#{seat_geek_partner_id}"
-    @month_of_the_year = month_of_the_year
-    @state = state
-    @attendee_count = attendee_count
-    @event_type = event_type
+  def self.get_events(options)
+    @options = options
+    @base_url = PUBLIC_API_URL
+    if options[:seat_geek_partner_id]
+      @base_url =+ "aid=#{options[:seat_geek_partner_id]}"
+    end
 
     parse_response(typhoeus_request.body)
   end
@@ -33,18 +33,18 @@ module SeatGeek
 
   private
 
-  attr_accessor :month_of_the_year, :state, :attendee_count, :event_type, :base_url
+  attr_accessor :options, :base_url
 
   # Instead of BuildQuery what if it's the Method name?
   # E.G Recommendations.build(options)
   # E.G Events.build(options)
   # This way each build could have their own custom settings
   def build_url
-    BuildQuery.build(options)
+    BuildQuery.build(options, base_url)
   end
 
   def typhoeus_request
-    request = Typhoeus::Request.new(build_url,
+    Typhoeus::Request.new(build_url,
       method: :get,
       headers: { Accept: "json" }
     ).run
@@ -52,15 +52,5 @@ module SeatGeek
 
   def parse_response(json_string)
     Oj.load(json_string)
-  end
-
-  def options
-    {
-      base_url: base_url,
-      month_of_the_year: month_of_the_year,
-      state: state,
-      attendee_count: attendee_count,
-      event_type: event_type,
-    }
   end
 end

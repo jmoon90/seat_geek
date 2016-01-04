@@ -1,9 +1,12 @@
 module SeatGeek
   class BuildQuery
-    def self.build(options)
+    def self.build(options, base_url)
       query = ""
+      if !base_url.match(/\?/)
+        query = "?"
+      end
       if options[:month_of_the_year]
-        query = month_query(options[:month_of_the_year])
+        query = query + month_query(options[:month_of_the_year])
       end
       if options[:state]
         query = query + location_query(options[:state])
@@ -14,7 +17,7 @@ module SeatGeek
       if options[:event_type]
         query = query + event_type_query(options[:event_type])
       end
-      options[:base_url] + query
+      base_url + query
     end
 
     private
@@ -28,7 +31,7 @@ module SeatGeek
       first_day_of_month = Date.civil(year, month, 1).strftime('%F')
       last_day_of_month = Date.civil(year, month, -1).strftime('%F')
 
-      "?datetime_utc.gte=#{first_day_of_month}&datetime_utc.lte=#{last_day_of_month}"
+      "&datetime_utc.gte=#{first_day_of_month}&datetime_utc.lte=#{last_day_of_month}"
     end
 
     # Events in NY state
