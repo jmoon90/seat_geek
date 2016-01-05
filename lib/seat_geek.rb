@@ -1,16 +1,17 @@
-require "seat_geek/version"
-require "seat_geek/build_query"
-require "seat_geek/taxonomy"
 require 'typhoeus'
 require 'oj'
 
+require "seat_geek/version"
+require "seat_geek/build_query"
+require "seat_geek/taxonomy"
+
 module SeatGeek
   extend self
-  PUBLIC_API_URL = 'http://api.seatgeek.com/2/events?'
+  PUBLIC_API_URL = 'http://api.seatgeek.com/2/'
 
   def self.get_events(options)
     @options = options
-    @base_url = PUBLIC_API_URL
+    @base_url = PUBLIC_API_URL + 'events?'
     if options[:seat_geek_partner_id]
       @base_url =+ "aid=#{options[:seat_geek_partner_id]}"
     end

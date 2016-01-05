@@ -1,7 +1,3 @@
-# require "seat_geek/build_query"
-# require 'typhoeus'
-# require 'oj'
-
 module SeatGeek
   class Taxonomy
     PUBLIC_API_URL = 'http://api.seatgeek.com/2/taxonomies'
@@ -32,11 +28,10 @@ module SeatGeek
 
     def get_events(event_ids)
       events = []
-
-      result = SeatGeek::Taxonomy.new.all['taxonomies']
+      taxonomies = SeatGeek::Taxonomy.new.all['taxonomies']
 
       event_ids.each do |x|
-        events << result[x]
+        events << taxonomies[x]
       end
       events
     end
