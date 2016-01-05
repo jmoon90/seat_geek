@@ -5,8 +5,6 @@
 module SeatGeek
   class Taxonomy
     PUBLIC_API_URL = 'http://api.seatgeek.com/2/taxonomies'
-    def initialize()
-    end
 
     def all
       @base_url = PUBLIC_API_URL
@@ -14,44 +12,34 @@ module SeatGeek
     end
 
     def professional_sports
-      professional = []
-      profSports = [2,6,9,15,19,33,37]
-      result = SeatGeek::Taxonomy.new.all
-
-      profSports.each do |x|
-        professional << result[x]
-      end
-
-      professional
+      professional_sport_ids = [2, 6, 9, 15, 19, 33, 37, ]
+      get_events(professional_sport_ids)
     end
 
-    def concerts
-      concerts = []
-      conert_ids = [2,6,9,15,19,33,37]
-      result = SeatGeek::Taxonomy.new.all
-
-      conert_ids.each do |x|
-        concerts << result[x]
-      end
-
-      concerts
+    def performance
+      concert_ids = [46, 47, 48, 49, 54, 55, 57, ]
+      get_events(concert_ids)
     end
 
     def minor_league_sports
-      minor = []
-      minorSports = [2,6,9,15,19,33,37]
-      result = SeatGeek::Taxonomy.new.all
-
-      minorSports.each do |x|
-        minor << result[x]
-      end
-
-      minor
+      minor_sport_ids = [4, 17, 13, ]
+      get_events(minor_sport_ids)
     end
 
     private
 
     attr_accessor :base_url
+
+    def get_events(event_ids)
+      events = []
+
+      result = SeatGeek::Taxonomy.new.all['taxonomies']
+
+      event_ids.each do |x|
+        events << result[x]
+      end
+      events
+    end
 
     def build_url
       BuildQuery.build({}, base_url)

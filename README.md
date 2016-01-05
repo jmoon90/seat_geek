@@ -39,27 +39,40 @@ taxonomy.professional_sports
 # pga
 # mma
 
+#=> [{"parent_id"=>1010000, "id"=>1010100, "name"=>"mlb"}, ... ]
 
 taxonomy.concerts
 # 7 conerts related events
 # classical
 # theater
 # concert
-# music_festival is index
+# music_festival
 # comedy
 # dance_performance_tour
 # broadway_tickets_national
+
+#=> [{"parent_id"=>1010000, "id"=>1010100, "name"=>"mlb"}, ... ]
+
+taxonomy.minor_league_sports
+# NBA d league
+# minor league baseball
+# minor league hockey
+#=> [{"parent_id"=>1010000, "id"=>1010100, "name"=>"mlb"}, ... ]
 ```
-Events (accepts five parameters or none)
+
 ```ruby
 SeatGeek.get_events()
 # => GET http://api.seatgeek.com/2/events
 
-SeatGeek.get_events(month_of_the_year: '2016-03',
-                    state: 'ny',
-                    attendee_count: num,
-                    event_type: 'taxonomie',
-                    seat_geek_partner_id:)
+Accepts 1 parameter
+
+params = { month_of_the_year: '2016-03',
+           state: 'ny',
+           attendee_count: num,
+           event_type: 'taxonomie',
+           seat_geek_partner_id: 1234,
+         }
+SeatGeek.get_events(params)
 ```
 
 ## Contributing
