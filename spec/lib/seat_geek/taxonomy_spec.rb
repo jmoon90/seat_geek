@@ -14,12 +14,8 @@ describe SeatGeek::Taxonomy do
 
   describe '#professional_sports' do
     before(:each) do
-      @professional = []
       prof_sports_id = [2,6,9,15,19,33,37]
-
-      prof_sports_id.each do |x|
-        @professional << @result[x]
-      end
+      @professional = get_events(prof_sports_id)
     end
 
     it 'returns mlb' do
@@ -50,12 +46,8 @@ describe SeatGeek::Taxonomy do
 
   describe '#concerts' do
     before(:each) do
-      @concerts = []
-      concerts_ids = [46, 47, 48, 40, 54, 55, 57,]
-
-      concerts_ids.each do |x|
-        @concerts << @result[x]
-      end
+      concerts_ids = [46, 47, 48, 49, 54, 55, 57,]
+      @concerts = get_events(concerts_ids)
     end
 
     it 'return concerts' do
@@ -70,8 +62,8 @@ describe SeatGeek::Taxonomy do
       expect(@concerts[2]["name"]).to eq('theater')
     end
 
-    it 'return tennis' do
-      expect(@concerts[3]["name"]).to eq('tennis')
+    it 'return classical' do
+      expect(@concerts[3]["name"]).to eq('classical')
     end
 
     it 'return broadway_tickets_national' do
@@ -91,25 +83,35 @@ describe SeatGeek::Taxonomy do
     end
   end
 
-  #TODO
   describe '#minor_league_sports' do
     before(:each) do
-      # @minor = []
-      # minorSports = [2,6,9,15,19,33,37]
-      # result = SeatGeek::Taxonomy.new.all["taxonomies"]
-      #
-      # minorSports.each do |x|
-      #   @minor << result[x]
-      # end
+      minor_sport_ids = [4, 17, 13, ]
+      @minor_league = get_events(minor_sport_ids)
     end
 
-#minor_league_baseball is index 4
-#minor_league_hockey is index 17
-#nba_dleague is index 13
-
-    it 'should return minor sporting events' do
-      skip
-      expect(1).to be_equal(2)
+    it 'returns minor league baseball' do
+      expect(@minor_league[0]["name"]).to eq('minor_league_baseball')
     end
+
+    it 'returns minor_league_hockey' do
+      expect(@minor_league[1]["name"]).to eq('minor_league_hockey')
+    end
+
+    it 'returns nba_dleague' do
+      expect(@minor_league[2]["name"]).to eq('nba_dleague')
+    end
+  end
+
+  private
+
+  def get_events(event_ids)
+    events = []
+
+    result = SeatGeek::Taxonomy.new.all['taxonomies']
+
+    event_ids.each do |x|
+      events << result[x]
+    end
+    events
   end
 end
