@@ -20,7 +20,7 @@ Or install it yourself as:
 Taxonomy
 
 ```ruby
-taxonomy = SeatGeek::Taxonomy.new()
+taxonomy = SeatGeek.get_taxonomies
 
 taxonomy.sports
 # Events that contains parent_id of 1000000
@@ -37,13 +37,9 @@ taxonomy.theater
 #=> <SeatGeek::Taxonomies::Theater: @parent_object={ ... },
                                    @sub_taxonomies= [{"parent_id"=>3000000, "id"=>3020000, "name"=>"cirque_du_soleil"} ..]
 
-all = taxonomy.all
+taxonomy
 # => GET http://api.seatgeek.com/2/taxonomies
 #=> contains all of the above
-
-all[:sports] or
-all[:concert] or
-all[:theater]
 ```
 
 Events

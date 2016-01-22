@@ -7,33 +7,39 @@ describe SeatGeek::Taxonomies::Tree do
 
   describe 'public methods ' do
     before(:each) do
-      @tree ||= SeatGeek::Taxonomies::Tree.new([SPORTS_ID, CONCERT_ID, THEATRE_ID], taxonomies)
-    end
-    describe '.sports' do
-      it 'returns all sporting taxonomy' do
-        sports = @tree.sports
-        expect(sports.name).to eq('sports')
-      end
+      @tree ||= SeatGeek::Taxonomies::Tree.new(parent_ids: [SPORTS_ID, CONCERT_ID, THEATRE_ID], taxonomies: taxonomies)
     end
 
-    describe '.concert' do
-      it 'returns all concert taxonomy' do
-        concert = @tree.concert
-        expect(concert.name).to eq('concert')
+    describe '.all' do
+      it 'responds to sports' do
+        expect(@tree.respond_to?(:sports)).to be true
       end
-    end
+      describe '.sports' do
+        it 'returns all sporting taxonomy' do
+          sports = @tree.sports
+          expect(sports.parent_object['name']).to eq('sports')
+        end
+      end
 
-    describe '.theater' do
-      it 'returns all theater taxonomy' do
-        theater = @tree.theater
-        expect(theater.name).to eq('theater')
+      describe '.concert' do
+        it 'returns all concert taxonomy' do
+          concert = @tree.concert
+          expect(concert.parent_object['name']).to eq('concert')
+        end
+      end
+
+      describe '.theater' do
+        it 'returns all theater taxonomy' do
+          theater = @tree.theater
+          expect(theater.parent_object['name']).to eq('theater')
+        end
       end
     end
   end
 
   describe 'private methods' do
     before(:each) do
-      tree ||= SeatGeek::Taxonomies::Tree.new([SPORTS_ID, CONCERT_ID, THEATRE_ID], taxonomies)
+      tree ||= SeatGeek::Taxonomies::Tree.new(parent_ids: [SPORTS_ID, CONCERT_ID, THEATRE_ID], taxonomies: taxonomies)
       @finished_tree = tree.send(:finished_tree)
     end
     describe '.finished_tree' do

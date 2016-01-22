@@ -1,10 +1,14 @@
 module SeatGeek
   module Taxonomies
     class Tree
-      def initialize(parent_ids, taxonomies)
+      def initialize(parent_ids:, taxonomies:)
         @parent_ids = parent_ids
         @taxonomies = taxonomies
         build_tree
+      end
+
+      def all
+        finished_tree
       end
 
       def sports

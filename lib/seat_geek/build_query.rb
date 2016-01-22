@@ -17,6 +17,9 @@ module SeatGeek
       if options[:event_type]
         query = query + event_type_query(options[:event_type])
       end
+      if options[:taxonomies]
+        query = query + 'taxonomies.name=' + options[:taxonomies]
+      end
       base_url + query
     end
 

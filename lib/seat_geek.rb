@@ -3,7 +3,6 @@ require 'oj'
 
 require "seat_geek/version"
 require "seat_geek/build_query"
-require "seat_geek/taxonomy"
 require "seat_geek/taxonomies/tree"
 require "seat_geek/taxonomies/sports"
 require "seat_geek/taxonomies/concert"
@@ -11,6 +10,10 @@ require "seat_geek/taxonomies/theater"
 
 
 module SeatGeek
+  SPORTS_ID = 1000000
+  CONCERT_ID = 2000000
+  THEATRE_ID = 3000000
+
   extend self
   PUBLIC_API_URL = 'https://api.seatgeek.com/2/'
 
@@ -22,6 +25,14 @@ module SeatGeek
     end
 
     parse_response(typhoeus_request.body)
+  end
+
+  def self.get_taxonomies
+    @options = {}
+    @base_url = 'https://api.seatgeek.com/2/taxonomies'
+    taxonomies = parse_response(typhoeus_request.body)['taxonomies']
+
+    SeatGeek::Taxonomy::Tree.new(parent_ids: [SPORTS_ID, CONCERT_ID, THEATRE_ID], taxonomies: taxonomies).all
   end
 
   #TODO Need to think this through
