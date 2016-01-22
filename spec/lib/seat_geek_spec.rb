@@ -6,8 +6,8 @@ describe 'get_event' do
     @result ||= SeatGeek.get_events(options)['events']
   end
 
-  it 'doesnt require params and contains 10 events' do
-    expect(@result.count).to be_equal(10)
+  it 'doesnt require params and contains events' do
+    expect(@result.count).to be > 1
   end
 
   it 'should return new york as state' do

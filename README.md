@@ -10,10 +10,6 @@ Add this line to your application's Gemfile:
 gem 'seat_geek'
 ```
 
-And then execute:
-
-    $ bundle
-
 Or install it yourself as:
 
     $ gem install seat_geek
@@ -26,40 +22,31 @@ Taxonomy
 ```ruby
 taxonomy = SeatGeek::Taxonomy.new()
 
-taxonomy.all
+taxonomy.sports
+# Events that contains parent_id of 1000000
+#=> <SeatGeek::Taxonomies::Sports: @parent_object={ ... },
+                                   @sub_taxonomies= [{"parent_id"=>1000000, "id"=>1010100, "name"=>"mlb"} ..]
+
+taxonomy.concert
+# Events that contains parent_id of 2000000
+#=> <SeatGeek::Taxonomies::Concert: @parent_object={ ... },
+                                   @sub_taxonomies= [{"parent_id"=>2000000, "id"=>2010000, "name"=>"music_festival"} ..]
+
+taxonomy.theater
+# Events that contains parent_id of 3000000
+#=> <SeatGeek::Taxonomies::Theater: @parent_object={ ... },
+                                   @sub_taxonomies= [{"parent_id"=>3000000, "id"=>3020000, "name"=>"cirque_du_soleil"} ..]
+
+all = taxonomy.all
 # => GET http://api.seatgeek.com/2/taxonomies
+#=> contains all of the above
 
-taxonomy.professional_sports
-# 7 professional sports
-# mlb
-# nba
-# nfl
-# nhl
-# mls
-# pga
-# mma
-
-#=> [{"parent_id"=>1010000, "id"=>1010100, "name"=>"mlb"}, ... ]
-
-taxonomy.concerts
-# 7 conerts related events
-# classical
-# theater
-# concert
-# music_festival
-# comedy
-# dance_performance_tour
-# broadway_tickets_national
-
-#=> [{"parent_id"=>1010000, "id"=>1010100, "name"=>"mlb"}, ... ]
-
-taxonomy.minor_league_sports
-# NBA d league
-# minor league baseball
-# minor league hockey
-#=> [{"parent_id"=>1010000, "id"=>1010100, "name"=>"mlb"}, ... ]
+all[:sports] or
+all[:concert] or
+all[:theater]
 ```
 
+Events
 ```ruby
 SeatGeek.get_events()
 # => GET http://api.seatgeek.com/2/events
@@ -74,6 +61,9 @@ params = { month_of_the_year: '2016-03',
          }
 SeatGeek.get_events(params)
 ```
+
+## TODO Implementation
+
 
 ## Contributing
 
