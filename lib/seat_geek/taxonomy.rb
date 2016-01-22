@@ -1,30 +1,38 @@
 module SeatGeek
   class Taxonomy
-    PUBLIC_API_URL = 'http://api.seatgeek.com/2/taxonomies'
+    PUBLIC_API_URL = 'https://api.seatgeek.com/2/taxonomies'
+    SPORTS_ID = 1000000
+    CONCERT_ID = 2000000
+    THEATRE_ID = 3000000
+
+    def initialize
+      @base_url = PUBLIC_API_URL
+      @taxonomies = parse_response(typhoeus_request.body)
+    end
 
     def all
-      @base_url = PUBLIC_API_URL
-      parse_response(typhoeus_request.body)
+      taxonomies
     end
 
-    def professional_sports
-      professional_sport_ids = [2, 6, 9, 15, 19, 33, 37, ]
-      get_events(professional_sport_ids)
+    def sports
+      taxonomies_tree.sports
     end
 
-    def performance
-      concert_ids = [46, 47, 48, 49, 54, 55, 57, ]
-      get_events(concert_ids)
+    def concert
+      taxonomies_tree.concert
     end
 
-    def minor_league_sports
-      minor_sport_ids = [4, 17, 13, ]
-      get_events(minor_sport_ids)
+    def theater
+      taxonomies_tree.theater
     end
 
     private
 
-    attr_accessor :base_url
+    attr_accessor :base_url, :taxonomies
+
+    def taxonomies_tree
+      @taxonomies_tree ||= SeatGeek::Taxonomies::Tree.new([SPORTS_ID, CONCERT_ID, THEATRE_ID], taxonomies['taxonomies'])
+    end
 
     def get_events(event_ids)
       events = []

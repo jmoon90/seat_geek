@@ -4,10 +4,15 @@ require 'oj'
 require "seat_geek/version"
 require "seat_geek/build_query"
 require "seat_geek/taxonomy"
+require "seat_geek/taxonomies/tree"
+require "seat_geek/taxonomies/sports"
+require "seat_geek/taxonomies/concert"
+require "seat_geek/taxonomies/theater"
+
 
 module SeatGeek
   extend self
-  PUBLIC_API_URL = 'http://api.seatgeek.com/2/'
+  PUBLIC_API_URL = 'https://api.seatgeek.com/2/'
 
   def self.get_events(options)
     @options = options
