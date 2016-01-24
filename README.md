@@ -27,15 +27,39 @@ taxonomy.sports
 #=> <SeatGeek::Taxonomies::Sports: @parent_object={ ... },
                                    @sub_taxonomies= [{"parent_id"=>1000000, "id"=>1010100, "name"=>"mlb"} ..]
 
+callable methods
+taxonomy.sports.
+  - all
+  - baseball
+  - basketball
+  - hockey
+  - football
+  - auto_racing
+  - golf
+  - fighting
+  - tennis
+  - animal_sports
+  - extreme_sports
+  - olympic_sports
+
 taxonomy.concert
 # Events that contains parent_id of 2000000
 #=> <SeatGeek::Taxonomies::Concert: @parent_object={ ... },
                                    @sub_taxonomies= [{"parent_id"=>2000000, "id"=>2010000, "name"=>"music_festival"} ..]
 
+callable methods
+taxonomy.concert.
+  - all
+  - music_festival
+
 taxonomy.theater
 # Events that contains parent_id of 3000000
 #=> <SeatGeek::Taxonomies::Theater: @parent_object={ ... },
                                    @sub_taxonomies= [{"parent_id"=>3000000, "id"=>3020000, "name"=>"cirque_du_soleil"} ..]
+
+taxonomy.theater.
+  - all
+  - classical
 
 taxonomy
 # => GET http://api.seatgeek.com/2/taxonomies

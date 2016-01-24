@@ -17,21 +17,21 @@ describe SeatGeek::Taxonomies::Tree do
       describe '.sports' do
         it 'returns all sporting taxonomy' do
           sports = @tree.sports
-          expect(sports.parent_object['name']).to eq('sports')
+          expect(sports.class).to eq(SeatGeek::Taxonomies::Sports)
         end
       end
 
       describe '.concert' do
         it 'returns all concert taxonomy' do
           concert = @tree.concert
-          expect(concert.parent_object['name']).to eq('concert')
+          expect(concert.class).to eq(SeatGeek::Taxonomies::Concert)
         end
       end
 
       describe '.theater' do
         it 'returns all theater taxonomy' do
           theater = @tree.theater
-          expect(theater.parent_object['name']).to eq('theater')
+          expect(theater.class).to eq(SeatGeek::Taxonomies::Theater)
         end
       end
     end
@@ -51,29 +51,17 @@ describe SeatGeek::Taxonomies::Tree do
         it 'sports key returns sports class' do
           expect(@finished_tree[:sports].class).to eq(SeatGeek::Taxonomies::Sports)
         end
-
-        it 'responds to sub_taxonomy method' do
-          expect(@finished_tree[:sports].respond_to?(:sub_taxonomies)).to be true
-        end
       end
 
       describe 'concert' do
         it 'concert key returns concert class' do
           expect(@finished_tree[:concert].class).to eq(SeatGeek::Taxonomies::Concert)
         end
-
-        it 'responds to sub_taxonomy method' do
-          expect(@finished_tree[:concert].respond_to?(:sub_taxonomies)).to be true
-        end
       end
 
       describe 'theater' do
         it 'theater key returns theater class' do
           expect(@finished_tree[:theater].class).to eq(SeatGeek::Taxonomies::Theater)
-        end
-
-        it 'responds to sub_taxonomy method' do
-          expect(@finished_tree[:theater].respond_to?(:sub_taxonomies)).to be true
         end
       end
     end
