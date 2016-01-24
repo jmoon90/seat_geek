@@ -35,14 +35,8 @@ module SeatGeek
             taxonomy['parent_id'] == parent_id
           end
 
-          if parent_object.fetch('name') == 'sports'
-            klass = SeatGeek::Taxonomies::Sports
-          elsif parent_object.fetch('name') == 'concert'
-            klass = SeatGeek::Taxonomies::Concert
-          elsif parent_object.fetch('name') == 'theater'
-            klass = SeatGeek::Taxonomies::Theater
-          end
-          finished_tree[parent_object['name'].to_sym] = klass.new(parent_object: parent_object, sub_taxonomies: sub_taxonomies)
+          klass = { 'sports' => SeatGeek::Taxonomies::Sports, 'concert' => SeatGeek::Taxonomies::Concert, 'theater' => SeatGeek::Taxonomies::Theater }
+          finished_tree[parent_object['name'].to_sym] = klass[parent_object['name']].new(parent_object: parent_object, sub_taxonomies: sub_taxonomies)
         end
       end
 

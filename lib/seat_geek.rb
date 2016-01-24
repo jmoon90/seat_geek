@@ -32,7 +32,7 @@ module SeatGeek
     @base_url = 'https://api.seatgeek.com/2/taxonomies'
     taxonomies = parse_response(typhoeus_request.body)['taxonomies']
 
-    SeatGeek::Taxonomy::Tree.new(parent_ids: [SPORTS_ID, CONCERT_ID, THEATRE_ID], taxonomies: taxonomies).all
+    SeatGeek::Taxonomies::Tree.new(parent_ids: [SPORTS_ID, CONCERT_ID, THEATRE_ID], taxonomies: taxonomies)
   end
 
   #TODO Need to think this through
