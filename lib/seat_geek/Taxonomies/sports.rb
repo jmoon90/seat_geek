@@ -1,8 +1,8 @@
 module SeatGeek
   module Taxonomies
     class Sports
-      def initialize(sub_taxonomies:)
-        @taxonomies = sub_taxonomies
+      def initialize(taxonomies:)
+        @taxonomies = taxonomies
       end
 
       def all
@@ -69,6 +69,7 @@ module SeatGeek
       attr_accessor :parent_id, :taxonomies
 
       def build_child_tree
+        # parent_ids.each do |parent_id|
         parent_object = taxonomies.detect { |taxonomy| taxonomy['id'] == parent_id }
 
         child_taxonomies = [parent_object]
@@ -76,6 +77,7 @@ module SeatGeek
           child_taxonomies << taxonomy if taxonomy['parent_id'] == parent_id
         end
         child_taxonomies
+        # end
       end
     end
   end
