@@ -1,8 +1,8 @@
 module SeatGeek
   module Taxonomies
     class Sports
-      def initialize(taxonomies:)
-        @taxonomies = taxonomies
+      def initialize(child_taxonomies:)
+        @taxonomies = child_taxonomies
       end
 
       def all

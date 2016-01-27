@@ -36,7 +36,7 @@ module SeatGeek
             child_taxonomies << taxonomy if taxonomy['parent_id'].to_s[0] == parent_id.to_s[0]
           end
 
-          finished_tree[parent_object['name'].to_sym] = tree_klass[parent_object['name']].new(taxonomies: child_taxonomies)
+          finished_tree[parent_object['name'].to_sym] = tree_klass[parent_object['name']].new(child_taxonomies: child_taxonomies)
         end
       end
 

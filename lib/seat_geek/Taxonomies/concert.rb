@@ -1,8 +1,8 @@
 module SeatGeek
   module Taxonomies
     class Concert
-      def initialize(sub_taxonomies:)
-        @taxonomies = sub_taxonomies
+      def initialize(child_taxonomies:)
+        @taxonomies = child_taxonomies
       end
 
       def all
