@@ -4,7 +4,7 @@ describe SeatGeek::BuildQuery do
   describe '#build' do
     before(:each) do
       @options = {
-        @month_of_the_year => nil,
+        @travel_dates => nil,
         @state => nil,
         @attendee_count => nil,
         @event_type => nil,
@@ -12,10 +12,10 @@ describe SeatGeek::BuildQuery do
       @base_url = 'api.seatgeek.com/2/events'
     end
 
-    it 'return month_of_the_year url' do
-      @options[:month_of_the_year] = '2016-01'
+    it 'return travel_dates url' do
+      @options[:travel_dates] = {arrive: '2016-03-15', depart: '2016-03-19'}
       result = SeatGeek::BuildQuery.build(@options, @base_url)
-      expect(result).to match('api.seatgeek.com/2/events?&datetime_utc.gte=2016-01-01&datetime_utc.lte=2016-01-31')
+      expect(result).to match('api.seatgeek.com/2/events?&datetime_utc.gte=2016-03-15&datetime_utc.lte=2016-03-19')
     end
 
     it 'return state url' do
