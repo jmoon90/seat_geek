@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'seat_geek' do
   describe '.get_event' do
     before(:each) do
-      options = {month_of_the_year: '2016-01', state: 'ny', attendee_count: '2', event_type: 'nba'}
+      options = {month_of_the_year: '2016-02', state: 'ny', attendee_count: '2', event_type: 'nba'}
       @result ||= SeatGeek.get_events(options)['events']
     end
     it 'doesnt require params and contains events' do
@@ -18,8 +18,8 @@ describe 'seat_geek' do
       expect(@result.first["stats"]["listing_count"]).to be >= 2
     end
 
-    it 'should return january as month' do
-      expect(@result.first["datetime_utc"]).to match(/2016-01/)
+    it 'should return december as month' do
+      expect(@result.first["datetime_utc"]).to match(/2016-02/)
     end
 
     it 'should return nba event' do
