@@ -27,6 +27,15 @@ module SeatGeek
     parse_response(typhoeus_request.body)
   end
 
+  def self.get_event(id:)
+    url = "#{PUBLIC_API_URL}events/#{id}"
+    request = Typhoeus::Request.new(url,
+                                     method: :get,
+                                     headers: { Accept: "json" }
+                                    ).run
+    parse_response(request.body)
+  end
+
   def self.get_taxonomies
     @options = {}
     @base_url = 'https://api.seatgeek.com/2/taxonomies'

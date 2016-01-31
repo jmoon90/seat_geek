@@ -27,6 +27,32 @@ describe 'seat_geek' do
     end
   end
 
+  describe '.get_event' do
+    before(:each) do
+      @result ||= SeatGeek.get_event(id: 2666195)
+    end
+
+    it 'returns event with id 2666195' do
+      expect(@result['id']).to be == 2666195
+    end
+
+    it 'returns average price for event' do
+      expect(@result['stats'].keys.include?('average_price')).to be true
+    end
+
+    it 'returns lowest price for event' do
+      expect(@result['stats'].keys.include?('lowest_price')).to be true
+    end
+
+    it 'returns title for event' do
+      expect(@result['title']).to be == 'Minnesota Wild at New York Islanders'
+    end
+
+    it 'returns score for event' do
+      expect(@result.keys.include?('score')).to be true
+    end
+  end
+
   describe '.get_taxonomies' do
     before(:each) do
       @taxonomies = SeatGeek.get_taxonomies

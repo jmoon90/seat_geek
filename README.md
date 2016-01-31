@@ -16,6 +16,29 @@ Or install it yourself as:
 
 ## Usage
 
+Events
+```ruby
+SeatGeek.get_events()
+# => GET http://api.seatgeek.com/2/events
+
+Accepts 1 parameter
+
+params = { travel_dates: {arrive: '2016-03-15', depart: '2016-03-19'},
+           state: 'ny',
+           attendee_count: num,
+           event_type: 'taxonomie',
+           seat_geek_partner_id: 1234,
+         }
+SeatGeek.get_events(params)
+
+------
+
+SeatGeek.get_event(id:)
+# => GET http://api.seatgeek.com/2/events/:id
+
+Accepts 1 integer
+```
+
 
 Taxonomy
 
@@ -64,22 +87,6 @@ taxonomy.theater.
 taxonomy
 # => GET http://api.seatgeek.com/2/taxonomies
 #=> contains all of the above
-```
-
-Events
-```ruby
-SeatGeek.get_events()
-# => GET http://api.seatgeek.com/2/events
-
-Accepts 1 parameter
-
-params = { travel_dates: {arrive: '2016-03-15', depart: '2016-03-19'},
-           state: 'ny',
-           attendee_count: num,
-           event_type: 'taxonomie',
-           seat_geek_partner_id: 1234,
-         }
-SeatGeek.get_events(params)
 ```
 
 ## TODO Implementation
