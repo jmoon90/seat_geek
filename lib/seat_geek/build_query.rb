@@ -5,8 +5,8 @@ module SeatGeek
       if !base_url.match(/\?/)
         query = "?"
       end
-      if options[:month_of_the_year]
-        query = query + month_query(options[:month_of_the_year])
+      if options[:travel_dates]
+        query = query + travel_dates_query(options[:travel_dates])
       end
       if options[:state]
         query = query + location_query(options[:state])
@@ -15,26 +15,20 @@ module SeatGeek
         query = query + attendee_count_query(options[:attendee_count])
       end
       if options[:event_type]
-        query = query + event_type_query(options[:event_type])
+        query = query + taxonomy_query(options[:event_type])
       end
       if options[:taxonomies]
-        query = query + 'taxonomies.name=' + options[:taxonomies]
+        query = query + taxonomies
       end
       base_url + query
     end
 
     private
 
-    # Events in April 2012
+    # Events in travel date
     # $ curl 'http://api.seatgeek.com/2/events?datetime_utc.gte=2012-04-01&datetime_utc.lte=2012-04-30'
-    def self.month_query(year_month)
-      year, month = year_month.split('-')
-      year = year.to_i
-      month = month.to_i
-      first_day_of_month = Date.civil(year, month, 1).strftime('%F')
-      last_day_of_month = Date.civil(year, month, -1).strftime('%F')
-
-      "&datetime_utc.gte=#{first_day_of_month}&datetime_utc.lte=#{last_day_of_month}"
+    def self.travel_dates_query(travel_dates)
+      "&datetime_utc.gte=#{travel_dates[:arrive]}&datetime_utc.lte=#{travel_dates[:depart]}"
     end
 
     # Events in NY state
@@ -50,8 +44,9 @@ module SeatGeek
 
     # Sporting Events
     # $ curl 'http://api.seatgeek.com/2/events?taxonomies.name=sports'
-    def self.event_type_query(type)
+    def self.taxonomy_query(type)
       "&taxonomies.name=#{type}"
     end
+
   end
 end
