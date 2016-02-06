@@ -24,6 +24,12 @@ describe SeatGeek::BuildQuery do
       expect(result).to match('api.seatgeek.com/2/events?&venue.state=NY')
     end
 
+    it 'return city url' do
+      @options[:city] = 'new-york-city'
+      result = SeatGeek::BuildQuery.build(@options, @base_url)
+      expect(result).to match('api.seatgeek.com/2/events?&venue.city=new-york-city')
+    end
+
     it 'return attendee_count url' do
       @options[:attendee_count] = 2
       result = SeatGeek::BuildQuery.build(@options, @base_url)

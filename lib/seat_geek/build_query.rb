@@ -9,7 +9,10 @@ module SeatGeek
         query = query + travel_dates_query(options[:travel_dates])
       end
       if options[:state]
-        query = query + location_query(options[:state])
+        query = query + location_query(state: options[:state])
+      end
+      if options[:city]
+        query = query + location_query(city: options[:city])
       end
       if options[:attendee_count]
         query = query + attendee_count_query(options[:attendee_count])
@@ -33,8 +36,13 @@ module SeatGeek
 
     # Events in NY state
     # $ curl 'http://api.seatgeek.com/2/events?venue.state=NY'
-    def self.location_query(location)
-      "&venue.state=#{location}"
+    # $ curl 'http://api.seatgeek.com/2/events?venue.city=new-york'
+    def self.location_query(state: nil, city: nil)
+      if state
+        "&venue.state=#{state}"
+      elsif city
+        "&venue.city=#{city}"
+      end
     end
 
     # GET http://api.seatgeek.com/2/events?listing_count.gt=0
