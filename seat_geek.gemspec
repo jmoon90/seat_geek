@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["John Moon"]
   spec.email         = ["johnmoonyy@gmail.com"]
   spec.summary       = %q{SeatGeek Uuby wrapper}
-  spec.description   = %q{Uses the SeatGeek Platform API to data around tickets in the USA. }
+  spec.description   = %q{A Ruby gem for communicating with the SeatGeek REST API}
   spec.homepage      = "https://github.com/jmoon90/seat_geek"
   spec.license       = "MIT"
 
