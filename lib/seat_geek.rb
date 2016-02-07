@@ -2,7 +2,14 @@ require 'typhoeus'
 require 'oj'
 
 require "seat_geek/version"
+
 require "seat_geek/build_query"
+require "seat_geek/query/travel_dates"
+require "seat_geek/query/attendee_count"
+require "seat_geek/query/event_type"
+require "seat_geek/query/state"
+require "seat_geek/query/city"
+
 require "seat_geek/taxonomies/tree"
 require "seat_geek/taxonomies/sports"
 require "seat_geek/taxonomies/concert"

@@ -5,56 +5,23 @@ module SeatGeek
       if !base_url.match(/\?/)
         query = "?"
       end
-      if options[:travel_dates]
-        query = query + travel_dates_query(options[:travel_dates])
+
+      # 'http://api.seatgeek.com/2/events?datetime_utc.gte=2012-04-01&datetime_utc.lte=2012-04-30'
+      # 'http://api.seatgeek.com/2/events?venue.state=NY'
+      # 'http://api.seatgeek.com/2/events?venue.city=new-york'
+      #  http://api.seatgeek.com/2/events?listing_count.gt=0
+      # 'http://api.seatgeek.com/2/events?taxonomies.name=sports'
+      query_klass = {travel_dates: SeatGeek::Query::TravelDates,
+                     attendee_count: SeatGeek::Query::AttendeeCount,
+                     event_type: SeatGeek::Query::EventType,
+                     state: SeatGeek::Query::State,
+                     city: SeatGeek::Query::City,
+                    }
+      options.keys.each do |name|
+        query = query + query_klass[name].new(options[name]).query if query_klass.keys.include?(name)
       end
-      if options[:state]
-        query = query + location_query(state: options[:state])
-      end
-      if options[:city]
-        query = query + location_query(city: options[:city])
-      end
-      if options[:attendee_count]
-        query = query + attendee_count_query(options[:attendee_count])
-      end
-      if options[:event_type]
-        query = query + taxonomy_query(options[:event_type])
-      end
-      if options[:taxonomies]
-        query = query + taxonomies
-      end
+
       base_url + query
     end
-
-    private
-
-    # Events in travel date
-    # $ curl 'http://api.seatgeek.com/2/events?datetime_utc.gte=2012-04-01&datetime_utc.lte=2012-04-30'
-    def self.travel_dates_query(travel_dates)
-      "&datetime_utc.gte=#{travel_dates[:arrive]}&datetime_utc.lte=#{travel_dates[:depart]}"
-    end
-
-    # Events in NY state
-    # $ curl 'http://api.seatgeek.com/2/events?venue.state=NY'
-    # $ curl 'http://api.seatgeek.com/2/events?venue.city=new-york'
-    def self.location_query(state: nil, city: nil)
-      if state
-        "&venue.state=#{state}"
-      elsif city
-        "&venue.city=#{city}"
-      end
-    end
-
-    # GET http://api.seatgeek.com/2/events?listing_count.gt=0
-    def self.attendee_count_query(count)
-      "&listing_count.gt=#{count}"
-    end
-
-    # Sporting Events
-    # $ curl 'http://api.seatgeek.com/2/events?taxonomies.name=sports'
-    def self.taxonomy_query(type)
-      "&taxonomies.name=#{type}"
-    end
-
   end
 end
