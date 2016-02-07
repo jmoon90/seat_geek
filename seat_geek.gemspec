@@ -19,15 +19,15 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.10"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rake", "~> 10.4.0"
 
-  spec.add_development_dependency "rspec"
-  spec.add_development_dependency "pry-byebug"
-  spec.add_development_dependency "awesome_print"
+  spec.add_development_dependency "rspec", "~> 3.4.0"
+  spec.add_development_dependency "pry-byebug", "~> 3.3.0"
+  spec.add_development_dependency "awesome_print", "~> 1.6.1"
 
-  spec.add_runtime_dependency "scoped_attr_accessor"
-  spec.add_dependency "typhoeus"
-  spec.add_dependency "oj"
+  spec.add_runtime_dependency "scoped_attr_accessor", "~> 1.0.3"
+  spec.add_dependency "typhoeus", "~> 1.0.1"
+  spec.add_dependency "oj", "~> 2.14.4"
 
-  spec.add_dependency "vcr"
+  spec.add_dependency "vcr", "~> 2.9.3"
 end
