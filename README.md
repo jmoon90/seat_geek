@@ -1,6 +1,5 @@
 # SeatGeek
-[![Gem
-Version](https://badge.fury.io/rb/seat_geek.svg)](https://badge.fury.io/rb/seat_geek) [![Build Status](https://travis-ci.org/jmoon90/seat_geek.svg)](https://travis-ci.org/jmoon90/seat_geek) [![Code Climate](https://codeclimate.com/github/jmoon90/seat_geek.svg)](https://codeclimate.com/github/jmoon90/seat_geek)
+[![Gem Version](https://badge.fury.io/rb/seat_geek.svg)](https://badge.fury.io/rb/seat_geek) [![Build Status](https://travis-ci.org/jmoon90/seat_geek.svg)](https://travis-ci.org/jmoon90/seat_geek) [![Code Climate](https://codeclimate.com/github/jmoon90/seat_geek.svg)](https://codeclimate.com/github/jmoon90/seat_geek)
 
 Uses the SeatGeek Platform API to data around tickets in the USA.
 

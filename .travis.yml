@@ -3,8 +3,4 @@ sudo: false
 rvm:
   - 2.2.2
 
-before_script:
-  - cp config/database.travis.yml config/database.yml
-  - psql -c 'create database YOUR_APP_NAME_test;' -U postgres
-
 script: bundle exec rspec spec
