@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.seatgeek.com/2/events/2576485
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Sun, 07 Feb 2016 18:50:29 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Etag:
+      - '"d9d7ee35ec4bc35e89a40dcd814fe1e1dd3d3690"'
+      Cache-Control:
+      - max-age=1800
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Varnish:
+      - 1823724230 1823721416
+      Age:
+      - '76'
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - lb-14-04-i-8152c308
+    body:
+      encoding: UTF-8
+      string: '{"links":[],"id":2576485,"stats":{"listing_count":null,"average_price":null,"lowest_price_good_deals":null,"lowest_price":null,"highest_price":null},"title":"Chris
+        Brown","announce_date":"2015-03-30T00:00:00","score":0.686243,"date_tbd":false,"type":"concert","datetime_local":"2016-02-07T03:30:00","visible_until_utc":"2016-02-08T06:00:00","time_tbd":true,"taxonomies":[{"parent_id":null,"id":2000000,"name":"concert"}],"performers":[{"stats":{"event_count":3},"name":"Chris
+        Brown","short_name":"Chris Brown","url":"https:\/\/seatgeek.com\/chris-brown-tickets","type":"band","image":"https:\/\/chairnerd.global.ssl.fastly.net\/images\/performers-landscape\/chris-brown-81eedc\/454\/huge.jpg","home_venue_id":null,"primary":true,"score":0.646133,"images":{"huge":"https:\/\/chairnerd.global.ssl.fastly.net\/images\/performers-landscape\/chris-brown-81eedc\/454\/huge.jpg"},"slug":"chris-brown","taxonomies":[{"parent_id":null,"id":2000000,"name":"concert"}],"has_upcoming_events":true,"id":454,"genres":[{"slug":"rnb","primary":true,"name":"rnb"}]}],"url":"https:\/\/seatgeek.com\/chris-brown-tickets\/houston-texas-toyota-center-2016-02-07-3-30-am\/concert\/2576485","created_at":"2015-03-30T00:00:00","venue":{"city":"Houston","name":"Toyota
+        Center","extended_address":"Houston, TX 77002","url":"https:\/\/seatgeek.com\/venues\/toyota-center\/tickets","country":"US","display_location":"Houston,
+        TX","links":[],"slug":"toyota-center","state":"TX","score":0.77404,"postal_code":"77002","location":{"lat":29.7505,"lon":-95.3622},"address":"1510
+        Polk Street","timezone":"America\/Chicago","id":129},"short_title":"Chris
+        Brown","datetime_utc":"2016-02-07T09:30:00","datetime_tbd":false}'
+    http_version: '1.1'
+    adapter_metadata:
+      effective_url: https://api.seatgeek.com/2/events/2576485
+  recorded_at: Sun, 07 Feb 2016 18:50:31 GMT
+recorded_with: VCR 3.0.1
