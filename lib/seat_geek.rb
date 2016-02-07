@@ -38,7 +38,6 @@ module SeatGeek
     url = "#{PUBLIC_API_URL}events/#{id}"
     request = Typhoeus::Request.new(url,
                                      method: :get,
-                                     headers: { Accept: "json" }
                                     ).run
     parse_response(request.body)
   end
@@ -95,7 +94,6 @@ module SeatGeek
   def typhoeus_request
     Typhoeus::Request.new(build_url,
       method: :get,
-      headers: { Accept: "json" }
     ).run
   end
 

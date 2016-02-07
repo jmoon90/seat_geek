@@ -28,4 +28,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "scoped_attr_accessor"
   spec.add_dependency "typhoeus"
   spec.add_dependency "oj"
+
+  spec.add_dependency "vcr"
 end

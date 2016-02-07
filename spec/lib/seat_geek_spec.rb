@@ -29,11 +29,13 @@ describe 'seat_geek' do
 
   describe '.get_event' do
     before(:each) do
-      @result ||= SeatGeek.get_event(id: 3082179)
+      VCR.use_cassette('seat_geek_get_event', :record => :new_episodes) do
+        @result ||= SeatGeek.get_event(id: 3085319)
+      end
     end
 
-    it 'returns event with id 2666195' do
-      expect(@result['id']).to be == 3082179
+    it 'returns event with id 3085319' do
+      expect(@result['id']).to be == 3085319
     end
 
     it 'returns average price for event' do
@@ -45,7 +47,7 @@ describe 'seat_geek' do
     end
 
     it 'returns title for event' do
-      expect(@result['title']).to be == 'Turnup - Montreal'
+      expect(@result['title']).to be == 'Kalendr'
     end
 
     it 'returns score for event' do
