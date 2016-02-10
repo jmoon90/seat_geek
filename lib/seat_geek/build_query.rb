@@ -1,27 +1,24 @@
 module SeatGeek
   class BuildQuery
+
+    def self.query_klass
+    @query_klass ||= {travel_dates: SeatGeek::Query::TravelDates,
+                   attendee_count: SeatGeek::Query::AttendeeCount,
+                   event_type: SeatGeek::Query::EventType,
+                   state: SeatGeek::Query::State,
+                   city: SeatGeek::Query::City,
+                   rid: SeatGeek::Query::PartnerProgram,
+                  }
+    end
+
     def self.build(options, base_url)
-      query = ""
-      if !base_url.match(/\?/)
-        query = "?"
-      end
+      options.reject! { |k,v| k.nil? }
 
-      # 'http://api.seatgeek.com/2/events?datetime_utc.gte=2012-04-01&datetime_utc.lte=2012-04-30'
-      # 'http://api.seatgeek.com/2/events?venue.state=NY'
-      # 'http://api.seatgeek.com/2/events?venue.city=new-york'
-      #  http://api.seatgeek.com/2/events?listing_count.gt=0
-      # 'http://api.seatgeek.com/2/events?taxonomies.name=sports'
-      query_klass = {travel_dates: SeatGeek::Query::TravelDates,
-                     attendee_count: SeatGeek::Query::AttendeeCount,
-                     event_type: SeatGeek::Query::EventType,
-                     state: SeatGeek::Query::State,
-                     city: SeatGeek::Query::City,
-                    }
-      options.keys.each do |name|
-        query = query + query_klass[name].new(options[name]).query if query_klass.keys.include?(name)
-      end
+      query_params = options.map do |key, args|
+        query_klass[key].new(args).query
+      end.join('&')
 
-      base_url + query
+      base_url + '?' + query_params
     end
   end
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'seat_geek' do
-  describe '.get_event' do
+  describe '.get_events' do
     before(:each) do
       options = {travel_dates: {arrive: '2016-03-01', depart: '2016-03-28'}, state: 'ny', attendee_count: '2', event_type: 'nba' }
       @result ||= SeatGeek.get_events(options)['events']
@@ -30,12 +30,12 @@ describe 'seat_geek' do
   describe '.get_event' do
     before(:each) do
       VCR.use_cassette('seat_geek_get_event', :record => :none) do
-        @result ||= SeatGeek.get_event(id: 2576485)
+        @result ||= SeatGeek.get_event(id: 2985739)
       end
     end
 
     it 'returns event with id 2576485' do
-      expect(@result['id']).to be == 2576485
+      expect(@result['id']).to be == 2985739
     end
 
     it 'returns average price for event' do
@@ -47,7 +47,7 @@ describe 'seat_geek' do
     end
 
     it 'returns title for event' do
-      expect(@result['title']).to be == 'Chris Brown'
+      expect(@result['title']).to be == 'DJ Soul with Just Blaze'
     end
 
     it 'returns score for event' do

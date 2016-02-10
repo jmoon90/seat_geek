@@ -46,5 +46,11 @@ describe SeatGeek::BuildQuery do
       result = SeatGeek::BuildQuery.build(@options, @base_url)
       expect(result).to match(@base_url)
     end
+
+    it 'returns rid url' do
+      @options[:rid] = 123
+      result = SeatGeek::BuildQuery.build(@options, @base_url)
+      expect(result).to match('api.seatgeek.com/2/events?&rid=123')
+    end
   end
 end
