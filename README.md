@@ -25,7 +25,7 @@ SeatGeek.get_events()
 
 Accepts 1 parameter
 
-params = { travel_dates: {arrive: '2016-03-15', depart: '2016-03-19'},
+params = { travel_dates: {arrive: '2016-03-15', depart: '2016-03-19', datetime_type: 'utc'},
            state: 'ny', #either state or city
            city: 'new-york-city', #either state or city
            attendee_count: num,
