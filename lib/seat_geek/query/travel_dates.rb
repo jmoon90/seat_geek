@@ -4,7 +4,7 @@ module SeatGeek
       def initialize(travel_dates)
         @arrive = travel_dates.fetch(:arrive) { return }
         @depart = travel_dates.fetch(:depart) { return }
-        @datetime_type = travel_dates.fetch(:datetime_type { 'local' }
+        @datetime_type = travel_dates.fetch(:datetime_type) { 'local' }
       end
 
       def query
