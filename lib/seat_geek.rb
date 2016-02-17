@@ -10,6 +10,7 @@ require "seat_geek/query/event_type"
 require "seat_geek/query/state"
 require "seat_geek/query/city"
 require "seat_geek/query/partner_program"
+require "seat_geek/query/pagination"
 
 require "seat_geek/taxonomies/tree"
 require "seat_geek/taxonomies/sports"

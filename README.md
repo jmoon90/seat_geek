@@ -23,7 +23,7 @@ Events
 SeatGeek.get_events()
 # => GET http://api.seatgeek.com/2/events
 
-Accepts 1 parameter
+Accepts 1 options parameter
 
 params = { travel_dates: {arrive: '2016-03-15', depart: '2016-03-19', datetime_type: 'utc'},
            state: 'ny', #either state or city
@@ -31,6 +31,7 @@ params = { travel_dates: {arrive: '2016-03-15', depart: '2016-03-19', datetime_t
            attendee_count: num,
            event_type: 'taxonomie',
            seat_geek_partner_id: 1234,
+           pagination: {per_page: 25, page: 2}
          }
 SeatGeek.get_events(params)
 

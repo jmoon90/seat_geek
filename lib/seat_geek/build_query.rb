@@ -8,6 +8,7 @@ module SeatGeek
                    state: SeatGeek::Query::State,
                    city: SeatGeek::Query::City,
                    rid: SeatGeek::Query::PartnerProgram,
+                   pagination: SeatGeek::Query::Pagination
                   }
     end
 

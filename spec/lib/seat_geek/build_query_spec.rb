@@ -15,7 +15,7 @@ describe SeatGeek::BuildQuery do
     it 'return travel_dates url' do
       @options[:travel_dates] = {arrive: '2016-03-15', depart: '2016-03-19'}
       result = SeatGeek::BuildQuery.build(@options, @base_url)
-      expect(result).to match('api.seatgeek.com/2/events?&datetime_utc.gte=2016-03-15&datetime_utc.lte=2016-03-19')
+      expect(result).to match('api.seatgeek.com/2/events?&datetime_local.gte=2016-03-15&datetime_local.lte=2016-03-19')
     end
 
     it 'return state url' do
@@ -51,6 +51,12 @@ describe SeatGeek::BuildQuery do
       @options[:rid] = 123
       result = SeatGeek::BuildQuery.build(@options, @base_url)
       expect(result).to match('api.seatgeek.com/2/events?&rid=123')
+    end
+
+    it 'returns pagination url' do
+      @options[:pagination] = {per_page: 25, page: 2}
+      result = SeatGeek::BuildQuery.build(@options, @base_url)
+      expect(result).to match('api.seatgeek.com/2/events?&per_page=25&page=2')
     end
   end
 end
