@@ -13,6 +13,7 @@ require "seat_geek/query/partner_program"
 require "seat_geek/query/pagination"
 
 require "seat_geek/taxonomies/tree"
+require "seat_geek/taxonomies/child_tree"
 require "seat_geek/taxonomies/sports"
 require "seat_geek/taxonomies/concert"
 require "seat_geek/taxonomies/theater"
@@ -27,11 +28,9 @@ module SeatGeek
   PUBLIC_API_URL = 'https://api.seatgeek.com/2/'
 
   def self.get_events(options)
-    @options = options
+    partner_id = options.fetch(:seat_geek_partner_id) { 11781 }
+    @options = options.merge(rid: partner_id)
     @base_url = PUBLIC_API_URL + 'events'
-    if options[:seat_geek_partner_id]
-      @base_url =+ "aid=#{options[:seat_geek_partner_id]}"
-    end
 
     parse_response(typhoeus_request.body)
   end
@@ -95,7 +94,7 @@ module SeatGeek
 
   def typhoeus_request
     Typhoeus::Request.new(build_url,
-      method: :get,
+      method: :get
     ).run
   end
 

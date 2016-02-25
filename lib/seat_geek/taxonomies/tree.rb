@@ -36,12 +36,13 @@ module SeatGeek
             child_taxonomies << taxonomy if taxonomy['parent_id'].to_s[0] == parent_id.to_s[0]
           end
 
-          finished_tree[parent_object['name'].to_sym] = tree_klass[parent_object['name']].new(child_taxonomies: child_taxonomies)
+          parent_object_name = parent_object['name'].to_sym
+          finished_tree[parent_object_name] = tree_klass[parent_object_name].new(child_taxonomies: child_taxonomies)
         end
       end
 
       def tree_klass
-        { 'sports' => SeatGeek::Taxonomies::Sports, 'concert' => SeatGeek::Taxonomies::Concert, 'theater' => SeatGeek::Taxonomies::Theater }
+        { sports: SeatGeek::Taxonomies::Sports, concert: SeatGeek::Taxonomies::Concert, theater: SeatGeek::Taxonomies::Theater }
       end
 
       def finished_tree

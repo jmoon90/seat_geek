@@ -93,9 +93,6 @@ taxonomy
 #=> contains all of the above
 ```
 
-## TODO Implementation
-
-
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/jmoon/seat_geek.
