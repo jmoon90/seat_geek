@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'seat_geek' do
   describe '.get_events' do
     before(:each) do
-      options = {travel_dates: {arrive: '2016-03-01', depart: '2016-03-28'}, state: 'ny', attendee_count: '2', event_type: 'nba' }
+      options = {travel_dates: {arrive: '2016-08-01', depart: '2016-08-28'}, state: 'ny', attendee_count: '2', event_type: 'mlb' }
       @result ||= SeatGeek.get_events(options)['events']
     end
     it 'doesnt require params and contains events' do
@@ -19,11 +19,11 @@ describe 'seat_geek' do
     end
 
     it 'should return december as month' do
-      expect(@result.first["datetime_utc"]).to match(/2016-03/)
+      expect(@result.first["datetime_utc"]).to match(/2016-08/)
     end
 
     it 'should return nba event' do
-      expect(@result.first['type']).to match(/nba/)
+      expect(@result.first['type']).to match(/mlb/)
     end
   end
 

@@ -1,0 +1,19 @@
+event_parent_id:
+  sports:
+    baseball: 1010000
+    basketball: 1030000
+    hockey: 1040000
+    football: 1020000
+    auto_racing: 1060000
+    golf: 1070000
+    fighting: 1080000
+    tennis: 1090000
+    animal_sports: 1100000
+    extreme_sports: 1110000
+    olympic_sports: 1120000
+  theater:
+    classical: 3010000
+  concert:
+    music_festival: 2010000
+
+

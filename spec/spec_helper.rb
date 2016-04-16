@@ -2,6 +2,7 @@ require 'seat_geek'
 require 'byebug'
 require 'ap'
 require 'vcr'
+require 'yaml'
 
 VCR.configure do |config|
   config.cassette_library_dir = "spec/vcr_cassettes"

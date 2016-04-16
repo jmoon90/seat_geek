@@ -12,8 +12,11 @@ describe SeatGeek::Taxonomies::Tree do
 
     describe '.all' do
       it 'responds to sports' do
-        expect(@tree.respond_to?(:sports)).to be true
+        expect(@tree.all.keys.include?(:sports)).to be true
+        expect(@tree.all.keys.include?(:theater)).to be true
+        expect(@tree.all.keys.include?(:concert)).to be true
       end
+
       describe '.sports' do
         it 'returns all sporting taxonomy' do
           sports = @tree.sports
