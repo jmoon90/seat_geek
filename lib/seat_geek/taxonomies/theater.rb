@@ -1,10 +1,9 @@
 module SeatGeek
   module Taxonomies
     class Theater < ChildTree
-      def initialize(child_taxonomies:)
+      def initialize(child_taxonomies:, file_path:, type:)
         @taxonomies = child_taxonomies
-        file_path = "/Users/johnmoon/Desktop/side_projects/seat_geek/lib/seat_geek/yaml/event_parent_id.yaml"
-        @units_hash = YAML.load_file(file_path).fetch('event_parent_id').fetch('theater')
+        @yaml_hash = YAML.load_file(file_path).fetch('event_parent_id').fetch(type)
       end
 
       def all
@@ -12,7 +11,7 @@ module SeatGeek
       end
 
       def classical
-        @parent_id = @units_hash.fetch('classical')
+        @parent_id = @yaml_hash.fetch('classical')
         build_child_tree
       end
 

@@ -1,6 +1,7 @@
 module SeatGeek
   module Taxonomies
     class Tree
+      FILE_PATH = "/Users/johnmoon/Desktop/side_projects/seat_geek/lib/seat_geek/yaml/event_parent_id.yaml"
       def initialize(parent_ids:, taxonomies:)
         @parent_ids = parent_ids
         @taxonomies = taxonomies
@@ -37,7 +38,9 @@ module SeatGeek
           end
 
           parent_object_name = parent_object['name'].to_sym
-          finished_tree[parent_object_name] = tree_klass[parent_object_name].new(child_taxonomies: child_taxonomies)
+          finished_tree[parent_object_name] = tree_klass[parent_object_name].new(child_taxonomies: child_taxonomies,
+                                                                                 file_path: FILE_PATH,
+                                                                                 type: parent_object['name'])
         end
       end
 
